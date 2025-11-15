@@ -1,0 +1,108 @@
+{
+  "info": {
+    "_postman_id": "7c52b9b5-44b6-4b7a-9b48-00d6fbbfaadd",
+    "name": "Feedback System API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "http://localhost:5000/api/auth/register" },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Test User\",\n    \"email\": \"test@test.com\",\n    \"password\": \"123456\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "http://localhost:5000/api/auth/login" },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"test@test.com\",\n    \"password\": \"123456\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Feedback",
+      "item": [
+        {
+          "name": "Create Feedback",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer YOUR_TOKEN_HERE" }
+            ],
+            "url": { "raw": "http://localhost:5000/api/feedback" },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"New Feedback\",\n    \"description\": \"This is a feedback test.\",\n    \"category\": \"ui\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get All Feedback",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:5000/api/feedback" }
+          }
+        },
+        {
+          "name": "Upvote Feedback",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Authorization", "value": "Bearer YOUR_TOKEN_HERE" }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/feedback/{{feedbackId}}/upvote"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Comments",
+      "item": [
+        {
+          "name": "Add Comment",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer YOUR_TOKEN_HERE" }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/comments/{{feedbackId}}"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"text\": \"This is a test comment.\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Comments",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/api/comments/{{feedbackId}}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
